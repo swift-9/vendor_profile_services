@@ -1,0 +1,24 @@
+[
+  {
+    "reviewId": 10,
+    "userId": 201,
+    "vendorId": 1,
+    "bookingId": 301,
+    "rating": 5,
+    "comments": "Excellent service",
+    "reviewDate": "2026-03-01",
+    "reviewTime": "10:30:00",
+    "status": "Enable"
+  },
+  {
+    "reviewId": 11,
+    "userId": 202,
+    "vendorId": 1,
+    "bookingId": 302,
+    "rating": 4,
+    "comments": "Very good",
+    "reviewDate": "2026-02-15",
+    "reviewTime": "14:00:00",
+    "status": "Enable"
+  }
+]

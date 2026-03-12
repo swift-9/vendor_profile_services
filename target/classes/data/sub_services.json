@@ -1,0 +1,22 @@
+[
+  {
+    "subServiceId": 1001,
+    "serviceId": 501,
+    "subServiceName": "Haircut",
+    "description": "Standard haircut",
+    "imagePath": "/images/subservices/1001.jpg",
+    "duration": 30,
+    "isActive": true,
+    "price": 15.00
+  },
+  {
+    "subServiceId": 1002,
+    "serviceId": 501,
+    "subServiceName": "Hair Coloring",
+    "description": "Full hair coloring",
+    "imagePath": "/images/subservices/1002.jpg",
+    "duration": 90,
+    "isActive": true,
+    "price": 45.00
+  }
+]
