@@ -1,6 +1,11 @@
 package com.app.publicvendorprofile.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "vendor_profile")
@@ -23,6 +28,7 @@ public class VendorProfile {
     private String country;
     private String pincode;
     private String photoPath;
+    @Column(name = "isVerified")
     private String isVerified;
 
     public Long getVendorId() {

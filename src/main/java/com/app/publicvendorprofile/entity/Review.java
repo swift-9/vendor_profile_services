@@ -19,13 +19,13 @@ public class Review {
     @Column(name = "review_id")
     private Long reviewId;
 
-    @Column(name = "userId")
+    @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "vendorId")
+    @Column(name = "vendor_id")
     private Long vendorId;
 
-    @Column(name = "bookingId")
+    @Column(name = "booking_id")
     private Long bookingId;
 
     @Column(name = "rating")

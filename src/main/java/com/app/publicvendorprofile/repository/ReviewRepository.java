@@ -15,12 +15,12 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     // Native query fallback that checks both camelCase and snake_case column names
     @Query(value = "SELECT r.review_id AS review_id, "
-         + "COALESCE(r.userId, r.user_id) AS userId, "
-         + "COALESCE(r.vendorId, r.vendor_id) AS vendorId, "
-         + "COALESCE(r.bookingId, r.booking_id) AS bookingId, "
-         + "r.rating AS rating, r.comments AS comments, r.review_date AS review_date, r.review_time AS review_time, r.status AS status "
-         + "FROM reviews r WHERE COALESCE(r.vendorId, r.vendor_id) = :vendorId",
-        countQuery = "SELECT COUNT(*) FROM reviews r WHERE COALESCE(r.vendorId, r.vendor_id) = :vendorId",
-        nativeQuery = true)
+        + "COALESCE(r.userId, r.user_id) AS user_id, "
+        + "COALESCE(r.vendorId, r.vendor_id) AS vendor_id, "
+        + "COALESCE(r.bookingId, r.booking_id) AS booking_id, "
+        + "r.rating AS rating, r.comments AS comments, r.review_date AS review_date, r.review_time AS review_time, r.status AS status "
+        + "FROM reviews r WHERE COALESCE(r.vendorId, r.vendor_id) = :vendorId",
+       countQuery = "SELECT COUNT(*) FROM reviews r WHERE COALESCE(r.vendorId, r.vendor_id) = :vendorId",
+       nativeQuery = true)
     Page<Review> findByVendorIdNative(@Param("vendorId") Long vendorId, Pageable pageable);
 }

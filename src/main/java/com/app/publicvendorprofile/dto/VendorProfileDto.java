@@ -13,6 +13,7 @@ public class VendorProfileDto {
     private String pincode;
     private String photoPath;
     private String isVerified;
+    private java.util.List<VendorWorkDto> works;
 
     public Long getVendorId() {
         return vendorId;
@@ -108,5 +109,13 @@ public class VendorProfileDto {
 
     public void setIsVerified(String isVerified) {
         this.isVerified = isVerified;
+    }
+
+    public java.util.List<VendorWorkDto> getWorks() {
+        return works;
+    }
+
+    public void setWorks(java.util.List<VendorWorkDto> works) {
+        this.works = works;
     }
 }

@@ -1,7 +1,6 @@
 package com.app.publicvendorprofile.service.impl;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -21,28 +20,24 @@ import com.app.publicvendorprofile.repository.SubServiceRepository;
 import com.app.publicvendorprofile.repository.VendorProfileRepository;
 import com.app.publicvendorprofile.repository.VendorWorkRepository;
 import com.app.publicvendorprofile.repository.VendorWorkSubServiceMapRepository;
-import com.app.publicvendorprofile.service.CartClient;
 import com.app.publicvendorprofile.service.VendorService;
 
-import reactor.core.publisher.Mono;
+ 
 
 @Service
 public class VendorServiceImpl implements VendorService {
 
-    private final CartClient cartClient;
     private final VendorProfileRepository vendorRepo;
     private final ReviewRepository reviewRepo;
     private final SubServiceRepository subServiceRepo;
     private final VendorWorkRepository vendorWorkRepo;
     private final VendorWorkSubServiceMapRepository vendorWorkSubServiceMapRepo;
 
-    public VendorServiceImpl(CartClient cartClient,
-                             VendorProfileRepository vendorRepo,
+    public VendorServiceImpl(VendorProfileRepository vendorRepo,
                              ReviewRepository reviewRepo,
                              SubServiceRepository subServiceRepo,
                              VendorWorkRepository vendorWorkRepo,
                              VendorWorkSubServiceMapRepository vendorWorkSubServiceMapRepo) {
-        this.cartClient = cartClient;
         this.vendorRepo = vendorRepo;
         this.reviewRepo = reviewRepo;
         this.subServiceRepo = subServiceRepo;
@@ -68,6 +63,14 @@ public class VendorServiceImpl implements VendorService {
         dto.setPincode(vp.getPincode());
         dto.setPhotoPath(vp.getPhotoPath());
         dto.setIsVerified(vp.getIsVerified());
+        // load vendor work entries
+        try {
+            java.util.List<com.app.publicvendorprofile.dto.VendorWorkDto> works = vendorWorkRepo.findWorksByVendorId(vendorId);
+            dto.setWorks(works);
+        } catch (Exception ex) {
+            // non-fatal: log and continue without works
+            // (we don't have logger in this class currently)
+        }
         return dto;
     }
 
@@ -158,11 +161,7 @@ public class VendorServiceImpl implements VendorService {
         return new PageImpl<>(pageContent, pageable, total);
     }
 
-    @Override
-    public Map<String, Object> addToCart(Map<String, Object> addCartRequest) {
-        Mono<Map<String, Object>> responseMono = cartClient.addItemToCart(addCartRequest);
-        return responseMono.block();
-    }
+
 
     private ReviewDto toDto(Review r) {
         ReviewDto dto = new ReviewDto();

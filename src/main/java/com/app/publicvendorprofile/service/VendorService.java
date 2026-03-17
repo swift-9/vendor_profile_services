@@ -1,7 +1,6 @@
 package com.app.publicvendorprofile.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,5 +20,4 @@ public interface VendorService {
     // paged variant for API
     org.springframework.data.domain.Page<OfferedSubServiceDto> getOfferedSubServices(Long vendorId, org.springframework.data.domain.Pageable pageable);
 
-    Map<String, Object> addToCart(Map<String, Object> addCartRequest);
 }
